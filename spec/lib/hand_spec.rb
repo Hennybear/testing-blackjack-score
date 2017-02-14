@@ -10,16 +10,25 @@ describe Hand do
   describe "#calculate_hand" do
     # We have included some example tests below. Change these once you get started!
 
-    it "passes" do
+    it "returns the sum of the values of the cards in the player's hand" do
       # Use the RSpec keyword `expect`, as it appears below, to test your assertions
-      expect(1).to eq(1)
+      expect(hand.calculate_hand).to eq(20)
     end
 
-    it "fails" do
-      expect(false).to eq true
+    it "returns either 1 or 11 points for and Ace, depending on which value gets the score closer-to, but not over, 21." do
+      hand_1 = Hand.new(["A♥", "J♣"])
+      expect(hand_1.calculate_hand).to eq(21)
     end
 
-    # Add your remaining tests here.
+    it "returns either 1 or 11 points for and Ace, depending on which value gets the score closer-to, but not over, 21." do
+      hand_2 = Hand.new(["A♥", "J♣", "3♠"])
+      expect(hand_2.calculate_hand).to eq(14)
+    end
+
+    it "returns either 1 or 11 points for all Aces, depending on which values gets the score closer-to, but not over, 21." do
+      hand_2 = Hand.new(["A♥", "J♣", "3♠", "A♥"])
+      expect(hand_2.calculate_hand).to eq(15)
+    end
 
   end
 end
