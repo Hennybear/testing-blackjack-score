@@ -31,12 +31,13 @@ class Hand
   def value
     result = 0
     @suitless_cards.each do |card|
-      if card == "1" || card == "2" || card == "3" || card == "4" || card == "5" || card == "6" || card == "7" || card == "8" || card == "9" || card == "10"
-        @card_value << card.to_i
-      elsif card == "J" || card == "Q" || card == "K"
+      # if card == "1" || card == "2" || card == "3" || card == "4" || card == "5" || card == "6" || card == "7" || card == "8" || card == "9" || card == "10"
+      if card == "J" || card == "Q" || card == "K"
         @card_value << 10
       elsif card == "A"
         @card_value << 11
+      else
+        @card_value << card.to_i
       end
       @card_value
     end
@@ -45,7 +46,7 @@ class Hand
 
   def remove_suits
     @cards.each do |card|
-      @suitless_cards << card.gsub(/[^0-9a-z ]/i, '')
+      @suitless_cards << card[0..-2] #.gsub(/[^0-9a-z ]/i, '')
     end
   end
 
